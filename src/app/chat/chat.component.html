@@ -6,6 +6,9 @@
 	<mat-card-content #chatContainer class="chat-list-container" [scrollTop]="chatContainer.scrollHeight"
 		*ngIf="!loading">
 		<mat-list>
+			<mat-list-item *ngIf="!messages?.length">
+				No messages till now. Send new to start.
+			</mat-list-item>
 			<mat-list-item *ngFor="let message of messages">
 				<p>
 					<strong *ngIf="message.isReceived">Server: </strong>
