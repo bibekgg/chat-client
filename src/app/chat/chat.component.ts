@@ -1,8 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Chat } from '../models/chat';
-import { ChatService } from '../services/chat.service';
 import { NgForm } from '@angular/forms';
+
+import { Chat } from '../models/chat';
 import { User } from '../models/user';
+import { ChatService } from '../services/chat.service';
 import { AuthService } from '../services/auth.service';
 import { SocketService } from '../services/socket.service';
 
