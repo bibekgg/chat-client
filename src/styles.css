@@ -4,3 +4,9 @@
 .full-width {
     width: 100%;
 }
+
+.main-container {
+    width: 90%;
+    max-width: 500px;
+    margin: auto;
+}

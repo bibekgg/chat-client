@@ -1,0 +1,4 @@
+.chat-list-container {
+    max-height: 50vh;
+    overflow: auto;
+}
