@@ -1,6 +1,8 @@
-<div class="main-container">
-	<h3>Chat with Us</h3>
-	<div #chatContainer class="chat-list-container" [scrollTop]="chatContainer.scrollHeight">
+<mat-card class="main-container">
+	<mat-card-header>
+		<mat-card-title>Chat with Us</mat-card-title>
+	</mat-card-header>
+	<mat-card-content #chatContainer class="chat-list-container" [scrollTop]="chatContainer.scrollHeight">
 		<mat-list>
 			<mat-list-item *ngFor="let message of messages">
 				<p>
@@ -10,13 +12,15 @@
 				</p>
 			</mat-list-item>
 		</mat-list>
-	</div>
-	<form #messageForm="ngForm">
-		<mat-form-field>
-			<input matInput placeholder="Enter your message" [(ngModel)]="chat.message" name="message"
-				#message="ngModel">
-		</mat-form-field>
-		<button mat-raised-button color="primary" [disabled]="!chat.message"
-			(click)="sendMessage(messageForm)">Send</button>
-	</form>
-</div>
+	</mat-card-content>
+	<mat-card-actions>
+		<form #messageForm="ngForm">
+			<mat-form-field>
+				<input matInput placeholder="Enter your message" [(ngModel)]="chat.message" name="message"
+					#message="ngModel">
+			</mat-form-field>
+			<button mat-raised-button color="primary" [disabled]="!chat.message"
+				(click)="sendMessage(messageForm)">Send</button>
+		</form>
+	</mat-card-actions>
+</mat-card>

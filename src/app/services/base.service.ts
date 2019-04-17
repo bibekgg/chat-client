@@ -8,7 +8,7 @@ import { environment } from '../../environments/environment';
 })
 
 export class BaseService {
-	url: string = environment.baseUrl;
+	url: string = environment.baseUrl + 'api/';
 
 	constructor() { }
 
