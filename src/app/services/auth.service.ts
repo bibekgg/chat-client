@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { Observable, of } from 'rxjs';
+import { Observable, of, Subject } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { User } from '../models/user';
@@ -12,6 +12,11 @@ import { User } from '../models/user';
 export class AuthService {
 	private authUrl = environment.baseUrl + 'auth';
 
+	// Observable string sources
+    private userDataChanged = new Subject<boolean>();
+    //Observable string streams
+    userDataChanged$ = this.userDataChanged.asObservable();
+	
 	constructor(
 		private http: HttpClient,
 	) { }
@@ -47,6 +52,10 @@ export class AuthService {
         return JSON.parse(currentUser);
     }
 
+	publishUserDataChange() {
+        this.userDataChanged.next(true);
+	}
+	
 	protected getOptions() {
         const token = localStorage.getItem('token');
         if (token) {

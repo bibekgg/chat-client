@@ -2,13 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../models/user';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
 
 @Component({
-	selector: 'app-login',
-	templateUrl: './login.component.html',
-	styleUrls: ['./login.component.css']
+	selector: 'app-signup',
+	templateUrl: './signup.component.html',
+	styleUrls: ['./signup.component.css']
 })
-export class LoginComponent implements OnInit {
+export class SignupComponent implements OnInit {
 	public user: User;
 	public saving: boolean = false;
 
@@ -21,17 +22,16 @@ export class LoginComponent implements OnInit {
 		this.user = new User();
 	}
 
-	login(loginForm) {
-		if (loginForm.form.valid) {
+	signup(signupForm: NgForm) {
+		if (this.user.password != this.user.confirmPassword) {
+			signupForm.controls.confirmPassword.setErrors({ "notSame": true })
+		} else if (signupForm.form.valid) {
 			this.saving = true;
-			this.authService.login(this.user)
+			this.authService.signup(this.user)
 				.subscribe(data => {
 					if (data) {
 						this.saving = false;
-						this.authService.setToken(data.token);
-						this.authService.setUser(data.user);
-						this.authService.publishUserDataChange();
-						this.router.navigate(['chat']);
+						this.router.navigate(['login'])
 					}
 				},
 					error => {

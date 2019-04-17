@@ -14,10 +14,18 @@ export class AppComponent implements OnInit {
 	constructor(
 		public authService: AuthService,
 		public router: Router
-	) { }
+	) {
+		// listen for user data change after login
+		this.authService.userDataChanged$
+			.subscribe(data => {
+				if (data) {
+					this.user = this.authService.getCurrentUser();
+				}
+			})
+	}
 
 	ngOnInit() {
-		if(this.authService.isLoggedIn()) {
+		if (this.authService.isLoggedIn()) {
 			this.user = this.authService.getCurrentUser();
 		}
 	}
