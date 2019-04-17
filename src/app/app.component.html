@@ -5,8 +5,8 @@
       Welcome {{user.name}}
     </span>
     <button mat-button (click)="logout()">
-        <mat-icon mat-icon>power_settings_new</mat-icon>Sign Out
-      </button>
+      <mat-icon mat-icon>power_settings_new</mat-icon>Sign Out
+    </button>
   </span>
   <div *ngIf="!authService.isLoggedIn()" align="right">
     <button mat-button [routerLink]="['/login']">
@@ -14,5 +14,6 @@
     </button>
   </div>
 </mat-toolbar>
-
-<router-outlet></router-outlet>
+<div class="main-container">
+  <router-outlet></router-outlet>
+</div>

@@ -1,8 +1,10 @@
-<mat-card class="main-container">
+<mat-card class="card-container">
 	<mat-card-header>
 		<mat-card-title>Chat with Us</mat-card-title>
 	</mat-card-header>
-	<mat-card-content #chatContainer class="chat-list-container" [scrollTop]="chatContainer.scrollHeight">
+	<mat-spinner *ngIf="loading"></mat-spinner>
+	<mat-card-content #chatContainer class="chat-list-container" [scrollTop]="chatContainer.scrollHeight"
+		*ngIf="!loading">
 		<mat-list>
 			<mat-list-item *ngFor="let message of messages">
 				<p>
@@ -15,7 +17,7 @@
 	</mat-card-content>
 	<mat-card-actions>
 		<form #messageForm="ngForm">
-			<mat-form-field>
+			<mat-form-field class="message-input">
 				<input matInput placeholder="Enter your message" [(ngModel)]="chat.message" name="message"
 					#message="ngModel">
 			</mat-form-field>
